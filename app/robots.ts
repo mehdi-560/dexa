@@ -1,0 +1,21 @@
+// dexent/app/robots.ts
+// Generates /robots.txt. Allows all crawlers (including AI/LLM crawlers, which
+// helps GEO visibility), and points to the sitemap.
+
+import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/constants";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        // Keep the lead API and any internal paths out of the index.
+        disallow: ["/api/"],
+      },
+    ],
+    sitemap: `${SITE.domain}/sitemap.xml`,
+    host: SITE.domain,
+  };
+}

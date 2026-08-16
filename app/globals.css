@@ -1,26 +1,155 @@
+/* dexent/app/globals.css */
 @import "tailwindcss";
 
+/* ============================================================
+   DEXENT — Design tokens (Tailwind v4 @theme)
+   "Freight Manifest" — cool paper base, deep green brand,
+   amber action accent. Referenced app-wide as bg-paper,
+   text-ink, bg-brand, text-accent, etc.
+   ============================================================ */
+@theme {
+  /* ---- Brand palette ---- */
+  --color-paper: #f7f8fa;        /* cool off-white base            */
+  --color-paper-2: #eef1f5;      /* slightly deeper paper panel    */
+  --color-ink: #161a20;          /* near-black primary text        */
+  --color-steel: #5a6474;        /* muted secondary text / labels  */
+  --color-line: #e2e6ec;         /* hairline borders / dividers    */
+
+  --color-brand: #127c54;        /* deep green — primary brand     */
+  --color-brand-600: #0e6644;    /* darker green (hover/press)     */
+  --color-brand-50: #eef6f1;     /* green tint (chips/badges)      */
+
+  --color-accent: #e0821e;       /* amber — action / CTA           */
+  --color-accent-600: #b8680f;   /* darker amber (hover/press)     */
+  --color-accent-50: #fdf6ec;    /* amber tint (promo band)        */
+
+  --color-signal: #1f9d6b;       /* live/success green             */
+  --color-road: #242c37;         /* asphalt for hero road strip    */
+
+  /* ---- Typography ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* ---- Radius scale ---- */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* ---- Shadow ---- */
+  --shadow-card: 0 1px 3px rgba(20, 26, 32, 0.05), 0 1px 2px rgba(20, 26, 32, 0.03);
+  --shadow-lift: 0 12px 32px rgba(20, 26, 32, 0.10);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Consistent, accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Motion — approved hero/scroll animations.
+   All CSS-only, all disabled under reduced-motion.
+   ============================================================ */
+@keyframes dx-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes dx-truck-drive {
+  from { transform: translateX(-120px); }
+  to   { transform: translateX(calc(100vw + 60px)); }
+}
+@keyframes dx-dash-scroll {
+  to { transform: translateX(-200px); }
+}
+@keyframes dx-puff {
+  0%   { opacity: 0.5; transform: scale(0.5) translateY(0); }
+  100% { opacity: 0;   transform: scale(2.4) translateY(-26px); }
+}
+@keyframes dx-wheel-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes dx-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* Utility hooks used by client islands */
+.dx-fade-up { animation: dx-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.dx-reveal  { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.dx-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .dx-reveal { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   MDX prose — blog/guide body content (.dx-prose wrapper)
+   ============================================================ */
+.dx-prose { color: var(--color-ink); font-size: 16px; line-height: 1.75; }
+.dx-prose > * + * { margin-top: 1.1em; }
+.dx-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+  margin-bottom: 0.4em;
+}
+.dx-prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.6em;
+  margin-bottom: 0.3em;
+}
+.dx-prose p { color: var(--color-steel); }
+.dx-prose strong { color: var(--color-ink); font-weight: 600; }
+.dx-prose a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 2px; }
+.dx-prose a:hover { color: var(--color-brand-600); }
+.dx-prose ul { list-style: disc; padding-left: 1.3em; color: var(--color-steel); }
+.dx-prose ol { list-style: decimal; padding-left: 1.3em; color: var(--color-steel); }
+.dx-prose li { margin-top: 0.4em; }
+.dx-prose code {
+  background: var(--color-paper-2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.dx-prose blockquote {
+  border-left: 3px solid var(--color-brand);
+  padding-left: 1em;
+  color: var(--color-steel);
+  font-style: italic;
 }
