@@ -2,6 +2,7 @@
 // Server component (no JS). Also carries internal links (equipment) for SEO silo.
 
 import Link from "next/link";
+import Image from "next/image";
 import { SITE, CONTACT, EQUIPMENT } from "@/lib/constants";
 
 export default function Footer() {
@@ -9,8 +10,14 @@ export default function Footer() {
     <footer className="mt-20 border-t border-line bg-paper-2">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
         <div>
-          <div className="mb-3 text-[15px] font-semibold font-[family-name:var(--font-display)]">
-            DEXENT
+          <div className="mb-3">
+            <Image
+              src="/images/logo.png"
+              alt="Dexent Logistics"
+              width={330}
+              height={202}
+              className="h-10 w-auto"
+            />
           </div>
           <p className="text-[13px] leading-relaxed text-steel">
             Truck dispatch for owner-operators and small fleets. Higher

@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CONTACT, SITE } from "@/lib/constants";
 
 const NAV = [
@@ -19,17 +20,25 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-brand text-paper">
-            {/* route icon */}
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <circle cx="6" cy="19" r="2" /><circle cx="18" cy="5" r="2" />
-              <path strokeLinecap="round" d="M6 17c0-6 12-4 12-10" />
-            </svg>
-          </span>
-          <span className="text-[15px] font-semibold tracking-wide font-[family-name:var(--font-display)]">
-            DEXENT
-          </span>
+        <Link href="/" className="flex items-center" aria-label={SITE.name}>
+          {/* Full logo on larger screens */}
+          <Image
+            src="/images/logo.png"
+            alt="Dexent Logistics"
+            width={330}
+            height={202}
+            priority
+            className="hidden h-9 w-auto sm:block"
+          />
+          {/* Truck-only mark on small screens */}
+          <Image
+            src="/images/logo-mark.png"
+            alt="Dexent Logistics"
+            width={292}
+            height={102}
+            priority
+            className="h-8 w-auto sm:hidden"
+          />
         </Link>
 
         {/* Desktop nav */}
