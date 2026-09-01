@@ -84,7 +84,7 @@ export default function NewMcProgramPage() {
           {/* Image slot — degrades gracefully if not present */}
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-paper-2">
             <Image
-              src="/images/team/new-authority.png"
+              src="/images/team/new-authority.jpg"
               alt="New owner-operator standing beside their first semi-truck"
               fill
               className="object-cover"
