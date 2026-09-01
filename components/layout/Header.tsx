@@ -10,8 +10,10 @@ const NAV = [
   { label: "Services", href: "/dispatch" },
   { label: "Pricing", href: "/pricing" },
   { label: "New MC", href: "/new-mc-program" },
+  { label: "Partners", href: "/partners" },
   { label: "Resources", href: "/resources" },
   { label: "Reviews", href: "/reviews" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -42,7 +44,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {NAV.map((n) => (
             <Link
               key={n.href}
@@ -64,7 +66,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden"
+          className="lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -80,7 +82,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-line bg-paper px-5 py-3 md:hidden">
+        <nav className="border-t border-line bg-paper px-5 py-3 lg:hidden">
           {NAV.map((n) => (
             <Link
               key={n.href}
