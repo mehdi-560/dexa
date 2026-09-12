@@ -7,13 +7,10 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // ---- www -> non-www (canonical host consolidation) ----
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.dexentlogistics.com" }],
-        destination: "https://dexentlogistics.com/:path*",
-        permanent: true,
-      },
+      // NOTE: www -> non-www redirect is intentionally NOT handled here.
+      // Handle domain consolidation in Vercel's dashboard instead
+      // (Settings -> Domains) to avoid conflicting with Vercel's own
+      // domain-level redirect and causing a redirect loop.
 
       // ---- Old service pages -> new dispatch pages ----
       { source: "/services", destination: "/dispatch", permanent: true },
