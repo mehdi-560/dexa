@@ -27,7 +27,10 @@ const nextConfig: NextConfig = {
       { source: "/why-dexent", destination: "/about", permanent: true },
 
       // ---- Old partner subpages -> the real /partners page (which now exists) ----
-      { source: "/partners/:slug*", destination: "/partners", permanent: true },
+      // NOTE: uses :slug+ (one-or-more), NOT :slug* (zero-or-more) — the
+      // zero-or-more form also matches bare "/partners" itself, which caused
+      // an infinite self-redirect loop (/partners -> /partners -> ...).
+      { source: "/partners/:slug+", destination: "/partners", permanent: true },
 
       // ---- Old blog -> new resources ----
       { source: "/blog/how-to-get-top-rates-as-owner-operator", destination: "/resources/how-much-can-an-owner-operator-make", permanent: true },
