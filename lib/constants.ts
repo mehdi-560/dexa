@@ -6,7 +6,7 @@
 export const SITE = {
   name: "Dexent Logistics",
   shortName: "Dexent",
-  domain: "https://dexentlogistics.com",
+  domain: "https://www.dexentlogistics.com",
   tagline: "Dispatch that pays for itself in the rate.",
   description:
     "Truck dispatch for owner-operators and small fleets — Power Only, Dry Van, Reefer & Flatbed. Higher net-per-mile, transparent pricing, no contracts. Dispatching nationwide.",
