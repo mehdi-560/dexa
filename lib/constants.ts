@@ -14,9 +14,9 @@ export const SITE = {
 
 // --- NAP (Name / Address / Phone) — keep identical across the whole site ---
 export const CONTACT = {
-  phoneDisplay: "(202) 417-7994",
-  phoneHref: "tel:+12024177994",
-  smsHref: "sms:+12024177994",
+  phoneDisplay: "(202) 505-4777",
+  phoneHref: "tel:+12025054777",
+  smsHref: "sms:+12025054777",
   email: "dispatch@dexentlogistics.com",
   emailHref: "mailto:dispatch@dexentlogistics.com",
   city: "Washington",
